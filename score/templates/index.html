@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>student score</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          width: 25%;
+        }
+        </style>
 </head>
 <body>
     <h1>Daftar Nilai Siswa</h1>
-    <ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>nama</th>
+                <th>nilai</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student['name']}}</td>
+                <td>{{ student['score']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- <ul>
         {% for student in students %}
             <li>
                 Nama: {{ student['name'] }} - Nilai: {{ student['score'] }}
@@ -20,7 +45,7 @@
                 {% endif %}
             </li>
         {% endfor %}
-    </ul>
+    </ul> -->
 
 </body>
 </html>
