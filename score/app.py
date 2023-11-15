@@ -10,11 +10,8 @@ def index():
             db.execute("INSERT INTO score (name, score) VALUES(?, ?)", name, score)
             return redirect("/")
         else:
-
             students = db.execute("SELECT * FROM score")
             return render_template("index.html", students=students)
-            return render_template("index.html", students=students)
-
 @app.route("/edit/<id>", methods=["GET", "POST"])
 def edit_data(id):
     if request.method == "GET":
@@ -25,4 +22,10 @@ def edit_data(id):
         score_name = request.form.get("name")
         score_score = request.form.get("score")
         db.execute('UPDATE score set name = ?, score = ? where id = ?', score_name, score_score, id)
-        return redirect("/")  
+        return redirect("/")
+        return redirect("/")
+
+@app.route("/delete/<id>", methods=["GET"])
+def delete(id):
+    db.execute("delete from score where id = ? ", id)
+    return redirect("/")
