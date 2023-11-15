@@ -8,18 +8,31 @@
         table, th, td {
           border: 1px solid black;
           border-collapse: collapse;
-          width: 25%;
         }
         </style>
 </head>
 <body>
     <h1>Daftar Nilai Siswa</h1>
 
+    <div>
+        <form action="/" method="POST">
+            <!-- Membuat input teks -->
+            <input name="name" placeholder="Name" type="text">
+            <!-- Membuat input number -->
+            <input name="month" placeholder="Month" type="number" min="1" max="12">
+            <input name="day" placeholder="Day" type="number" min="1" max="31">
+            <!-- Membuat tombol submit -->
+            <input type="submit" value="Add Birthday">
+            <!-- Penutupan form -->
+        </form>
+    </div>
+
     <table>
         <thead>
             <tr>
-                <th>nama</th>
-                <th>nilai</th> 
+                <th style="width: 10%;">nama</th>
+                <th style="width: 5%;">nilai</th> 
+                <th style="width: 20%;">Deskripsi</th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +40,19 @@
             <tr>
                 <td>{{ student['name']}}</td>
                 <td>{{ student['score']}}</td>
+                <td>{% if student['score'] > 90 %}
+                     Congratulations
+                    {% elif student['score'] >= 76 %}
+                     Very good
+                    {% else %}
+                     maaf, Anda tidak lulus
+                    {% endif %}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <!-- <ul>
+   <!-- <ul>
         {% for student in students %}
             <li>
                 Nama: {{ student['name'] }} - Nilai: {{ student['score'] }}
